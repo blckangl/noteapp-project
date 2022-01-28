@@ -1,0 +1,8 @@
+#notes{
+width: 100%;
+  height: calc(100vh - var(--top-nav-height));
+  display: flex;
+  main{
+    width: 100%;
+  }
+}

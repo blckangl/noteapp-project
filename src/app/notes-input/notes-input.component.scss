@@ -1,0 +1,34 @@
+.container{
+  width: 100%;
+  .form{
+    .input-container{
+      padding: 4px 8px;
+      input{
+        width: 100%;
+        padding: 8px;
+        background-color: #C4C4C4;
+        border: 1px solid #C4C4C4;
+        border-radius: 4px;
+      }
+      textarea{
+        width: 100%;
+        padding: 8px;
+        background-color: #C4C4C4;
+        border: 1px solid #C4C4C4;
+        border-radius: 4px;
+        resize: none;
+      }
+    }
+    .action-container{
+      display: flex;
+      justify-content: end;
+      padding: 4px 8px;
+      button{
+        width: 30px;
+        height: 30px;
+        background-color: #4A148C;
+        border:1px solid #4A148C;
+      }
+    }
+  }
+}
