@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Note} from "../models/note";
+import {NoteService} from "../services/note.service";
 
 @Component({
   selector: 'app-note-element',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteElementComponent implements OnInit {
 
-  constructor() { }
+  @Input() note!:Note;
+  constructor(private noteService:NoteService) { }
 
   ngOnInit(): void {
   }
 
+  changeNoteStatus(event: any) {
+     console.log(event.target.checked);
+
+     this.noteService.changeStatus(this.note,event.target.checked)
+  }
 }

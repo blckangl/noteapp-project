@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NotesInputComponent } from './notes-input/notes-input.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteElementComponent } from './note-element/note-element.component';
+import { IsCheckedDirective } from './directives/is-checked.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NoteElementComponent } from './note-element/note-element.component';
     HomePageComponent,
     NotesInputComponent,
     NotesListComponent,
-    NoteElementComponent
+    NoteElementComponent,
+    IsCheckedDirective
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,6 @@
 <section class="container">
   <div class="note-list">
-      <app-note-element></app-note-element>
-    <app-note-element></app-note-element>
-    <app-note-element></app-note-element>
-    <app-note-element></app-note-element>
+      <app-note-element *ngFor="let note of notes" [note]="note" ></app-note-element>
 
   </div>
 </section>

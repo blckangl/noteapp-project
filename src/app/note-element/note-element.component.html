@@ -5,7 +5,7 @@
     <button class="action warning"></button>
   </div>
   <div class="note">
-    <p>note 1</p>
-    <input type="checkbox">
+    <p>{{note.title}}</p>
+    <input [appIsChecked]="note.isDone ? note.isDone:false"  type="checkbox" (input)="changeNoteStatus($event)" >
   </div>
 </div>
