@@ -3,6 +3,13 @@
   .form{
     .input-container{
       padding: 4px 8px;
+      select{
+        width: 100%;
+        padding: 8px;
+        background-color: #C4C4C4;
+        border: 1px solid #C4C4C4;
+        border-radius: 4px;
+      }
       input{
         width: 100%;
         padding: 8px;

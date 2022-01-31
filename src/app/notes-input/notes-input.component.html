@@ -6,8 +6,14 @@
     <div class="input-container">
       <textarea placeholder="Content" #contentInput type="text"></textarea>
     </div>
+    <div class="input-container">
+      <select #categoryInput name="" id="">
+        <option *ngFor="let category of categories | async" [value]="category | lowercase">{{category}}</option>
+
+      </select>
+    </div>
     <div class="action-container">
-      <button (click)="addNote(titleInput,contentInput)"></button>
+      <button (click)="addNote(titleInput,contentInput,categoryInput)"></button>
     </div>
   </div>
 

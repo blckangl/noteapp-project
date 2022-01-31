@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NoteService} from "../services/note.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-notes-input',
@@ -8,17 +9,20 @@ import {NoteService} from "../services/note.service";
 })
 export class NotesInputComponent implements OnInit {
 
+  categories : Observable<Array<string>>;
   constructor(private noteService: NoteService) {
+    this.categories = noteService.categories;
   }
 
   ngOnInit(): void {
   }
 
-  addNote(titleInput: HTMLInputElement, contentInput: HTMLTextAreaElement) {
+  addNote(titleInput: HTMLInputElement, contentInput: HTMLTextAreaElement,categoryInput:HTMLSelectElement) {
+    console.log("selected category is ",categoryInput.value);
     let note = {
       title: titleInput.value,
       content: contentInput.value,
-      category: 'reunion',
+      category: categoryInput.value,
       id:0
     }
     this.noteService.AddNote(note);
