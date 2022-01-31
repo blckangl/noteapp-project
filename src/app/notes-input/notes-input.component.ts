@@ -22,6 +22,8 @@ export class NotesInputComponent implements OnInit {
       id:0
     }
     this.noteService.AddNote(note);
+    titleInput.value = '';
+    contentInput.value = '';
     console.log(note);
   }
 }

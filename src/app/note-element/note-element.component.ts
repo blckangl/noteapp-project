@@ -9,15 +9,21 @@ import {NoteService} from "../services/note.service";
 })
 export class NoteElementComponent implements OnInit {
 
-  @Input() note!:Note;
-  constructor(private noteService:NoteService) { }
+  @Input() note!: Note;
+
+  constructor(private noteService: NoteService) {
+  }
 
   ngOnInit(): void {
   }
 
   changeNoteStatus(event: any) {
-     console.log(event.target.checked);
+    console.log(event.target.checked);
 
-     this.noteService.changeStatus(this.note,event.target.checked)
+    this.noteService.changeStatus(this.note, event.target.checked)
+  }
+
+  deleteNote() {
+    this.noteService.deleteNote(this.note);
   }
 }

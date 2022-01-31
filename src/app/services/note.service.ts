@@ -32,6 +32,10 @@ export class NoteService {
   notes: Observable<Array<Note>> = this._notes.asObservable()
 
   constructor() {
+    this.notes.subscribe(note=>{
+      console.log("notes state has been changed ",note)
+      this.syncData();
+    })
   }
 
   public AddNote(note: Note) {
@@ -46,9 +50,28 @@ export class NoteService {
   public changeStatus(note: Note, status: boolean){
     let currentNote = this._notes.value.find(x=>x.id==note.id);
 
-    if(currentNote)
+    if(currentNote){
       currentNote.isDone = status;
+      let tempList = [...this._notes.value];
+       let noteIndex = this._notes.value.findIndex(x=>x.id==currentNote?.id)
+
+
+
+      this._notes.next([...tempList.slice(0,noteIndex),currentNote,...tempList.slice(noteIndex+1,tempList.length)])
+
+
+    }
   }
+
+  public deleteNote(note:Note){
+    this._notes.next([...this._notes.value.filter(x=>x.id!=note.id)])
+
+  }
+
+   syncData(){
+    localStorage.setItem("notes",JSON.stringify(this._notes.value))
+  }
+
 }
 
 //['5','4','3']
