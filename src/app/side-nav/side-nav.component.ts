@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NoteService} from "../services/note.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-side-nav',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  public categories : Observable<Array<string>>
+  constructor(private notesService:NoteService) {
+    this.categories = this.notesService.categories;
+
+  }
 
   ngOnInit(): void {
   }

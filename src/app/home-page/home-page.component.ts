@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Note} from "../models/note";
+import {NoteService} from "../services/note.service";
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+   list!:Array<Note>;
+  constructor(private router:ActivatedRoute,private noteService:NoteService) {
+    this.router.queryParams.subscribe(res=>{
+      let category = res['category']
+     noteService.getNotes(category).subscribe(list=>{
+       this.list = list;
+     })
+
+    })
+  }
 
   ngOnInit(): void {
   }

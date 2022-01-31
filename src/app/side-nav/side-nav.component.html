@@ -1,9 +1,13 @@
 <section id="side-nav">
 <div class="main-navigation">
   <ul class="nav">
-    <li class="nav-item">List 1</li>
-    <li class="nav-item">List 2</li>
-    <li class="nav-item">List 3</li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" [queryParams]="{category: ''}" >Notes</a>
+    </li>
+    <li *ngFor="let category of categories | async" class="nav-item">
+      <a [routerLink]="['/']" [queryParams]="{category:category | lowercase}">{{category}}</a>
+    </li>
+
   </ul>
 </div>
   <div class="footer">

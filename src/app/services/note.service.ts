@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Note} from "../models/note";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,13 @@ export class NoteService {
 
   notes: Observable<Array<Note>> ;
 
+  _categories: BehaviorSubject<Array<string>>;
+  categories:Observable<Array<string>>
+
   constructor() {
+    const initialCategories = ['Reunion','Todos','Shopping','Project']
+    this._categories = new BehaviorSubject<Array<string>>(initialCategories);
+    this.categories = this._categories.asObservable();
     const initialStateString = localStorage.getItem("notes")
     let initialListState;
     if(initialStateString){
@@ -57,6 +63,15 @@ export class NoteService {
 
   public deleteNote(note:Note){
     this._notes.next([...this._notes.value.filter(x=>x.id!=note.id)])
+
+  }
+  public getNotes(category:string|undefined = undefined):Observable<Array<Note>>{
+
+    if(category){
+      return this.notes.pipe(map(list=>list.filter(note=>note.category.toLowerCase()==category.toLowerCase())));
+    }
+
+    return this.notes;
 
   }
 
