@@ -7,31 +7,23 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class NoteService {
 
-  INCR = 0;
-  initialListState: Array<Note> = [
-    {
-      id: this.INCR++,
-      title: 'rdv',
-      content: 'rdv with someone',
-      category: 'reunion',
-      isDone: false,
-      date: new Date()
-    },
-    {
-      id: this.INCR++,
-      title: 'rdv 2',
-      content: 'rdv with someone 2',
-      category: 'reunion',
-      isDone: true,
-      date: new Date()
-    }
-  ];
+  INCR = 0
 
-  _notes: BehaviorSubject<Array<Note>> = new BehaviorSubject<Array<Note>>(this.initialListState)
+  _notes: BehaviorSubject<Array<Note>> ;
 
-  notes: Observable<Array<Note>> = this._notes.asObservable()
+  notes: Observable<Array<Note>> ;
 
   constructor() {
+    const initialStateString = localStorage.getItem("notes")
+    let initialListState;
+    if(initialStateString){
+      initialListState = JSON.parse(initialStateString)
+    }
+    else{
+      initialListState = [];
+    }
+    this._notes = new BehaviorSubject<Array<Note>>(initialListState);
+    this.notes = this._notes.asObservable();
     this.notes.subscribe(note=>{
       console.log("notes state has been changed ",note)
       this.syncData();
