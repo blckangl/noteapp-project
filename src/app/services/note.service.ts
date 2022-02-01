@@ -75,6 +75,10 @@ export class NoteService {
 
   }
 
+  public createCategory(categoryName:string){
+    this._categories.next([...this._categories.value,categoryName])
+  }
+
    syncData(){
     localStorage.setItem("notes",JSON.stringify(this._notes.value))
   }

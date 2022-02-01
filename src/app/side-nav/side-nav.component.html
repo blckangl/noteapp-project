@@ -12,7 +12,21 @@
 </div>
   <div class="footer">
     <div class="actions">
-      <button><img src="assets/plus-321.png"/></button>
+      <button (click)="showModal()" ><img src="assets/plus-321.png"/></button>
+    </div>
+  </div>
+</section>
+
+<section #modal class="modal-container" >
+  <div class="modal">
+    <div class="input-container">
+      <label for="categoryinput">Category name: </label>
+      <input  #categoryInput placeholder="category" id="categoryinput" type="text">
+    </div>
+    <div class="action">
+      <button (click)="hideModal()">Cancel</button>
+
+      <button (click)="addCategory(categoryInput)">Add category</button>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-#side-nav{
+#side-nav {
   height: 100%;
   background-color: var(--side-nav-backgroundcolor);
   width: var(--side-nav-width);
@@ -6,11 +6,13 @@
   flex-direction: column;
   color: white;
   justify-content: space-between;
-  .main-navigation{
 
-    .nav{
+  .main-navigation {
+
+    .nav {
       padding: 16px;
-      .nav-item{
+
+      .nav-item {
         list-style: none;
         background-color: #232526;
         padding: 11px;
@@ -19,27 +21,31 @@
         border-radius: 6px;
         cursor: pointer;
       }
-      .nav-item:hover{
-        list-style: none;
-        background-color:#2B2D2F ;
 
-        border: 2px solid  #232526;
+      .nav-item:hover {
+        list-style: none;
+        background-color: #2B2D2F;
+
+        border: 2px solid #232526;
       }
     }
   }
-  .footer{
-    .actions{
+
+  .footer {
+    .actions {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      button{
+
+      button {
         border-radius: 4px;
         height: 55px;
         background-color: white;
         width: 100%;
         cursor: pointer;
-        img{
+
+        img {
           height: 45px;
 
           width: 45px;
@@ -47,4 +53,71 @@
       }
     }
   }
+}
+
+.modal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.61);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events:none;
+
+  .modal {
+    width: 60%;
+    height: 200px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .input-container {
+      label {
+        width: 100%
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        background-color: #C4C4C4;
+        border: 1px solid #C4C4C4;
+        border-radius: 4px;
+        margin-top: 6px;
+      }
+
+      .warning {
+        border: 1px solid var(--warning-color);
+      }
+    }
+
+    .action {
+      display: flex;
+      justify-content: end;
+
+      button {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px;
+        border: 1px solid white;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.show{
+  opacity: 1;
+  pointer-events: auto;
 }

@@ -18,6 +18,9 @@ export class NotesInputComponent implements OnInit {
   }
 
   addNote(titleInput: HTMLInputElement, contentInput: HTMLTextAreaElement,categoryInput:HTMLSelectElement) {
+    if(!titleInput.value || !contentInput.value){
+      return;
+    }
     console.log("selected category is ",categoryInput.value);
     let note = {
       title: titleInput.value,
