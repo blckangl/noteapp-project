@@ -1,6 +1,6 @@
 <div class="container">
   <div class="actions">
-    <button class="action"></button>
+    <button (click)="showEditModal()" class="action"></button>
     <button class="action"></button>
     <button (click)="deleteNote()" class="action warning"></button>
   </div>
@@ -9,3 +9,22 @@
     <input [appIsChecked]="note.isDone ? note.isDone:false"  type="checkbox" (input)="changeNoteStatus($event)" >
   </div>
 </div>
+
+
+<section #modal class="modal-container" >
+  <div class="modal">
+    <div class="input-container">
+      <label for="titleInput">Title: </label>
+      <input #titleInput placeholder="Title" id="titleInput" type="text" [value]="note.title">
+    </div>
+    <div class="input-container">
+      <label for="contentInput">Content: </label>
+      <textarea #contentInput placeholder="Content" id="contentInput" type="text" [value]="note.content"></textarea>
+    </div>
+    <div class="action">
+      <button (click)="closeEditModal()" >Cancel</button>
+
+      <button (click)="updateNote(titleInput,contentInput)" >Update</button>
+    </div>
+  </div>
+</section>

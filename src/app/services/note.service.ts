@@ -64,7 +64,25 @@ export class NoteService {
 
   }
 
+  public updateNote(note:Note){
+    let currentNote = this._notes.value.find(x => x.id == note.id);
+
+    if (currentNote) {
+      currentNote.title = note.title;
+      currentNote.content = note.content;
+
+      let tempList = [...this._notes.value];
+      let noteIndex = this._notes.value.findIndex(x => x.id == currentNote?.id)
+
+
+      this._notes.next([...tempList.slice(0, noteIndex), currentNote, ...tempList.slice(noteIndex + 1, tempList.length)])
+
+
+    }
+  }
+
   public getNotes(category: string | undefined = undefined, term: string): Observable<Array<Note>> {
+    console.log({term:term,category:category})
     if (category) {
       return this.notes.pipe(map(list => list.filter(note => note.category.toLowerCase() == category.toLowerCase() && (note.title.includes(term) || note.content.includes(term)))));
     }

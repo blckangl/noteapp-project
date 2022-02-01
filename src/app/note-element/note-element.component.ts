@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Note} from "../models/note";
 import {NoteService} from "../services/note.service";
 
@@ -9,6 +9,7 @@ import {NoteService} from "../services/note.service";
 })
 export class NoteElementComponent implements OnInit {
 
+  @ViewChild('modal') modal!: ElementRef;
   @Input() note!: Note;
 
   constructor(private noteService: NoteService) {
@@ -25,5 +26,27 @@ export class NoteElementComponent implements OnInit {
 
   deleteNote() {
     this.noteService.deleteNote(this.note);
+  }
+
+  updateNote(titleInput: HTMLInputElement, contentInput: HTMLTextAreaElement) {
+
+    if (titleInput.value.length == 0 || contentInput.value.length == 0) {
+      return;
+    }
+    let currentNote: Note = {...this.note};
+    currentNote.title = titleInput.value;
+    currentNote.content = contentInput.value;
+    this.noteService.updateNote(currentNote)
+    this.closeEditModal();
+
+  }
+
+  showEditModal() {
+    this.modal.nativeElement.classList.add('show')
+  }
+
+  closeEditModal() {
+    this.modal.nativeElement.classList.remove('show')
+
   }
 }
