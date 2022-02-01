@@ -49,4 +49,9 @@ export class NoteElementComponent implements OnInit {
     this.modal.nativeElement.classList.remove('show')
 
   }
+
+  archiveNote() {
+    this.noteService.archiveNote(this.note,true)
+
+  }
 }

@@ -58,6 +58,20 @@ export class NoteService {
 
     }
   }
+  public archiveNote(note: Note, isArchived: boolean) {
+    let currentNote = this._notes.value.find(x => x.id == note.id);
+
+    if (currentNote) {
+      currentNote.isArchived = isArchived;
+      let tempList = [...this._notes.value];
+      let noteIndex = this._notes.value.findIndex(x => x.id == currentNote?.id)
+
+
+      this._notes.next([...tempList.slice(0, noteIndex), currentNote, ...tempList.slice(noteIndex + 1, tempList.length)])
+
+
+    }
+  }
 
   public deleteNote(note: Note) {
     this._notes.next([...this._notes.value.filter(x => x.id != note.id)])
@@ -84,10 +98,17 @@ export class NoteService {
   public getNotes(category: string | undefined = undefined, term: string): Observable<Array<Note>> {
     console.log({term:term,category:category})
     if (category) {
-      return this.notes.pipe(map(list => list.filter(note => note.category.toLowerCase() == category.toLowerCase() && (note.title.includes(term) || note.content.includes(term)))));
+      if(category.toLowerCase() == 'archive')
+      {
+        return this.notes.pipe(map(list => list.filter(note => (note.title.includes(term) || note.content.includes(term)) && note.isArchived)));
+
+      }else{
+        return this.notes.pipe(map(list => list.filter(note => note.category.toLowerCase() == category.toLowerCase() && (note.title.includes(term) || note.content.includes(term)) && !note.isArchived)));
+
+      }
     }
 
-    return this.notes.pipe(map(list => list.filter(note => (note.title.includes(term) || note.content.includes(term)))));;
+    return this.notes.pipe(map(list => list.filter(note => (note.title.includes(term) || note.content.includes(term)) && !note.isArchived)));;
 
   }
 

@@ -26,6 +26,7 @@ export class NotesInputComponent implements OnInit {
       title: titleInput.value,
       content: contentInput.value,
       category: categoryInput.value,
+      isArchived:false,
       id:0
     }
     this.noteService.AddNote(note);

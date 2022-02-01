@@ -4,6 +4,9 @@
     <li class="nav-item">
       <a [routerLink]="['/']" [queryParams]="{category: ''}" >Notes</a>
     </li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" [queryParams]="{category: 'archive'}" >Archive</a>
+    </li>
     <li *ngFor="let category of categories | async" class="nav-item">
       <a [routerLink]="['/']" [queryParams]="{category:category | lowercase}">{{category}}</a>
     </li>
