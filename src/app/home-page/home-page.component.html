@@ -1,5 +1,5 @@
 <section>
-  <app-top-nav></app-top-nav>
+  <app-top-nav (onSearch)="searchByTerm($event)"></app-top-nav>
 </section>
 
 <section id="notes">
@@ -7,7 +7,7 @@
     <app-side-nav></app-side-nav>
 
   <main>
-    <app-notes-input></app-notes-input>
+    <app-notes-input ></app-notes-input>
     <app-notes-list [notes]="list"></app-notes-list>
   </main>
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Note} from "../models/note";
 import {NoteService} from "../services/note.service";
@@ -10,13 +10,17 @@ import {NoteService} from "../services/note.service";
 })
 export class HomePageComponent implements OnInit {
 
-   list!:Array<Note>;
-  constructor(private router:ActivatedRoute,private noteService:NoteService) {
-    this.router.queryParams.subscribe(res=>{
+  list!: Array<Note>;
+  term = "";
+  category="";
+
+  constructor(private router: ActivatedRoute, private noteService: NoteService) {
+    this.router.queryParams.subscribe(res => {
       let category = res['category']
-     noteService.getNotes(category).subscribe(list=>{
-       this.list = list;
-     })
+      this.category = category;
+      noteService.getNotes(category,this.term).subscribe(list => {
+        this.list = list;
+      })
 
     })
   }
@@ -24,4 +28,15 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchByTerm(term: string) {
+    this.term = term;
+
+    console.log(term)
+    this.noteService.getNotes(this.category,term).subscribe(list => {
+      console.log(list)
+      console.log("term is ",term)
+      this.list = list;
+    })
+
+  }
 }
