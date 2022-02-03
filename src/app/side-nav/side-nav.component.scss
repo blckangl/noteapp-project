@@ -1,12 +1,13 @@
 #side-nav {
   height: 100%;
   background-color: var(--side-nav-backgroundcolor);
-  width: var(--side-nav-width);
+  width: 0;
+  opacity: 0;
   display: flex;
   flex-direction: column;
   color: white;
   justify-content: space-between;
-
+ transition: all 0.2s ease-out;
   .main-navigation {
 
     .nav {
@@ -55,6 +56,10 @@
   }
 }
 
+.show{
+width: var(--side-nav-width) !important;
+  opacity: 1 !important;
+}
 .modal-container {
   position: fixed;
   left: 0;

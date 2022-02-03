@@ -51,7 +51,7 @@ export class NoteElementComponent implements OnInit {
   }
 
   archiveNote() {
-    this.noteService.archiveNote(this.note,true)
+      this.noteService.archiveNote(this.note,!this.note.isArchived)
 
   }
 }
