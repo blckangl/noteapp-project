@@ -10,6 +10,7 @@ import { NotesInputComponent } from './notes-input/notes-input.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteElementComponent } from './note-element/note-element.component';
 import { IsCheckedDirective } from './directives/is-checked.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { IsCheckedDirective } from './directives/is-checked.directive';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

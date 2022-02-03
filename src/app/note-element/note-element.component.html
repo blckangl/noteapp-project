@@ -1,8 +1,11 @@
 <div class="container">
   <div class="actions">
-    <button (click)="showEditModal()" class="action"></button>
-    <button (click)="archiveNote()" class="action"></button>
-    <button (click)="deleteNote()" class="action warning"></button>
+    <button (click)="showEditModal()" class="action"><fa-icon [icon]="faEdit"></fa-icon>
+    </button>
+    <button (click)="archiveNote()" class="action"><fa-icon [icon]="faArchive"></fa-icon>
+    </button>
+    <button (click)="deleteNote()" class="action warning"><fa-icon [icon]="faMinusCircle"></fa-icon>
+    </button>
   </div>
   <div class="note">
     <p>{{note.title}}</p>

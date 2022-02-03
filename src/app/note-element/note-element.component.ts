@@ -1,6 +1,9 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Note} from "../models/note";
 import {NoteService} from "../services/note.service";
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faArchive } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-note-element',
@@ -8,7 +11,9 @@ import {NoteService} from "../services/note.service";
   styleUrls: ['./note-element.component.scss']
 })
 export class NoteElementComponent implements OnInit {
-
+  faEdit = faEdit;
+  faArchive = faArchive;
+  faMinusCircle = faMinusCircle;
   @ViewChild('modal') modal!: ElementRef;
   @Input() note!: Note;
 

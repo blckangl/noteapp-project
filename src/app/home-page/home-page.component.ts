@@ -13,6 +13,7 @@ export class HomePageComponent implements OnInit {
   list!: Array<Note>;
   term = "";
   category="";
+  toggleMenu= true;
 
   constructor(private router: ActivatedRoute, private noteService: NoteService) {
     this.router.queryParams.subscribe(res => {
@@ -38,5 +39,10 @@ export class HomePageComponent implements OnInit {
       this.list = list;
     })
 
+  }
+
+  toggleSideNav() {
+    console.log("sidenav toggling")
+    this.toggleMenu = !this.toggleMenu;
   }
 }
